@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="a6d44e21-65e8-454c-b876-3b709eb41265" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="1b28f4d5-8822-43f7-871c-51a56b578ecb" file="config-${env}.yaml" />
+	<flow name="hello-world-devopsFlow" doc:id="eca48716-d618-4fca-ac66-6e9dad32c400" >
+		<http:listener doc:name="Listener" doc:id="a8b7ba2c-7a91-4c6d-b84f-f67132032e5e" config-ref="HTTP_Listener_config" path="/test"/>
+		<set-payload value="Hello from ${payload.message}" doc:name="Set Payload" doc:id="6476516f-1398-4e8e-afa2-23cc778620a8" />
+	</flow>
+</mule>
