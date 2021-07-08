@@ -30,22 +30,22 @@ pipeline {
     stage('SonarQube Analysis') {
       steps {
         withSonarQubeEnv('Sonarqube') {
-        sh 'mvn sonar:sonar   -Dsonar.projectKey=ttt   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=0bb732e5b77a673c8a7c5d0ce97712fa863f3ddf -Dsonar.sources=src/'
+        sh 'mvn sonar:sonar   -Dsonar.projectKey=mule-testing   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=faa437ea209e439a07c6a45c9c57f2dd6213a78a -Dsonar.sources=src/'
       } 
     }
     }
 
-    stage('SonarQube Quality Gate') {
-      steps {
-        withSonarQubeEnv('Sonarqube') {
-          timeout(time: 2, unit: 'MINUTES') {
-             script {
-               waitForQualityGate abortPipeline: true
-             }
-         }
-       }
-      } 
-    }
+    // stage('SonarQube Quality Gate') {
+    //   steps {
+    //     withSonarQubeEnv('Sonarqube') {
+    //       timeout(time: 2, unit: 'MINUTES') {
+    //          script {
+    //            waitForQualityGate abortPipeline: true
+    //          }
+    //      }
+    //    }
+    //   } 
+    // }
     
 
     stage('Deploy to UAT') {
