@@ -35,17 +35,17 @@ pipeline {
     }
     }
 
-    // stage('SonarQube Quality Gate') {
-    //   steps {
-    //     withSonarQubeEnv('Sonarqube') {
-    //       timeout(time: 2, unit: 'MINUTES') {
-    //          script {
-    //            waitForQualityGate abortPipeline: true
-    //          }
-    //      }
-    //    }
-    //   } 
-    // }
+    stage('SonarQube Quality Gate') {
+      steps {
+        withSonarQubeEnv('Sonarqube') {
+          timeout(time: 2, unit: 'MINUTES') {
+             script {
+               waitForQualityGate abortPipeline: true
+             }
+         }
+       }
+      } 
+    }
     
 
     stage('Deploy to UAT') {
